@@ -1,0 +1,4 @@
+#!/bin/bash
+
+rm -rf EnterTabTab/EnterTabTab.app/Contents/Resources/app.nw
+cp -R deploy EnterTabTab/EnterTabTab.app/Contents/Resources/app.nw

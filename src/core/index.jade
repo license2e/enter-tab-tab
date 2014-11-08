@@ -1,0 +1,37 @@
+doctype
+html
+  head
+    title EnterTabTab
+    meta(charset='utf-8')
+  body(tabindex="0")
+    #app
+      article#article
+      footer#footer.footer
+        section#footer-section
+          nav#footernav
+            ul#main-menu.footernav-menu
+              li#login
+                a#login-icon(href="#login")
+                  span Log In
+              li#add-project
+                a#add-project-icon(href="#add-project")
+                  span Add New Project
+              li#sample
+                a#sample-icon(href="#sample-project")
+                  span Sample Project
+              li#search
+                a#search-icon(href="#search-expand") 
+                  span.hide-text Search          
+                form#search-form(method="post", action="#search")
+                  input(type="input", name="s", placeholder="Search")
+                  input(type="submit", name="search", value="Search")
+            ul#copydeck-menu.footernav-menu
+              li some item
+            #inspect-code
+              a(href="#inspect-code") Inspect
+          a#logo.hide-text(href="#main")
+      #msg
+      //#inspect
+      //a#inspect-close(href="#inspect-close") close
+      //#inspect-container
+    script(src="app/js/app-setup.js", type="text/javascript")

@@ -1,0 +1,14 @@
+section#copydeck-section
+  form#copydeck-entry-form(action="#writecopy", method="post")
+    input#copydeck-copydeck-key(type="hidden", name="copydeck-copydeck-key", value="")
+    #copydeck-wrap
+      #copydeck-copydeck-info
+        #copydeck-copydeck-label Copydeck<br />Name
+        textarea#copydeck-copydeck-name
+      #copydeck-entries
+        #copydeck-entry-wrap.copydeck-entries-wrap
+          textarea#copydeck-entry.copydeck-entries
+          #entry-categories-container.copydeck-entry-category
+            ul#entry-categories
+              li#loading
+                em Loading

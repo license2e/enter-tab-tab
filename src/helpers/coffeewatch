@@ -1,0 +1,55 @@
+#!/usr/bin/env node
+
+var path = require('path')
+  , fs = require('fs')
+  , crypto = require('crypto')
+  , coffee = require('coffee-script')
+  , ugjs = require('uglify-js')
+  , cipher = null;
+
+fs.watch(path.join(__dirname, '/../coffee/'), function (event, filename) {
+  if(filename && filename.indexOf('coffee') != -1 && (event == 'change' || event == 'rename')) {
+    var inputfile = './src/coffee/'+filename
+      , deploy = './deploy/app/js/'
+      , outputpath = deploy + filename.replace('coffee', 'js')
+      , ettecontainer = fs.readFileSync('./src/core/app-encrypt.js', {encoding: 'utf8'});
+      
+    // dangerous!
+    eval(ettecontainer);
+      
+    fs.readFile(inputfile, 'utf8', function read(err, data) {
+      if (err) {
+        console.log(err);
+      }
+      var encrypted_code = coffee.compile(data, {
+          bare: true
+        });
+      
+      /* */
+      encrypted_code = ugjs.minify(encrypted_code, {
+        compress: true
+        , fromString: true
+        , mangle: true
+      }).code
+      /* */
+      
+      /* */
+      if( filename != 'app-setup.coffee' ){  
+        // Encrypt the file
+        cipher = crypto.createCipher(ette.algorithm, ette.password);
+        encrypted_code = cipher.update(encrypted_code, 'utf8', 'base64');
+        encrypted_code = encrypted_code + cipher.final('base64');
+        outputpath = outputpath + 'enc';
+      }
+      /* */
+      
+      fs.writeFile(outputpath, encrypted_code, function write(err){
+        if (err) {
+          console.log(err);
+        } else {
+          console.log(inputfile + ' > ' + outputpath);
+        }
+      });
+    });
+  }
+});

@@ -1,0 +1,486 @@
+/*= Global
+------------------------------------------------- */
+
+max-width = 970px
+footer-size = 50px
+
+*
+  -webkit-touch-callout none
+  -webkit-user-select none
+  -webkit-user-drag none
+  outline none
+
+::selection
+  color #7685a9
+  background rgba(41,48,64,.9)
+
+::-webkit-input-placeholder
+  color #ccc
+  
+::-webkit-scrollbar-track
+  background transparent
+
+body, a
+  font 400 17px/20px 'PT Sans', Arial, sans-serif
+  color #4c4c4c
+  text-decoration none
+  
+body 
+  background #f7f7f7
+  
+textarea
+  resize none
+
+#app
+  z-index 0
+
+#msg
+  position absolute
+  top 0
+  left 50%
+  margin-left -250px
+  width 500px
+  padding 15px 10px
+  background-color #ccc
+  border 1px solid #aaa
+  border-top none
+  border-radius 0 0 5px 5px
+  display none
+
+#inspect
+  position absolute
+  top 0
+  bottom 0
+  right 0
+  width 500px
+  margin-top 15px
+  margin-bottom 15px
+  margin-right -600px
+  border 1px solid #222
+  border-right none
+  border-radius 5px 0 0 5px
+  background-color rgba(17,17,17,.5)
+  color #222
+  
+  #inspect-close
+    position absolute
+    top 10px
+    right 10px
+    
+  #inspect-container
+    padding 25px
+
+#inspect.show
+  margin-right 0
+
+#msg.alert 
+  background-color #ffc
+  border-color #cca
+
+#msg.error
+  background-color #fcc
+  border-color #caa
+  
+#msg.success
+  background-color #cfc
+  border-color #aca
+
+.article, #footer-section
+  width (max-width + (100*2))
+  margin auto
+  
+#article, #footer  
+  section
+    width max-width
+    margin auto
+    position relative
+
+#article
+  section
+    padding 10px 100px 0
+
+#footer  
+  section
+    padding 6px 100px 0
+
+.footer, .footer a
+  font 400 11px/13px Arial, sans-serif
+  color #777a82
+  text-decoration none
+  
+#footer 
+  position fixed
+  bottom 0
+  width 100%
+  height footer-size
+  background rgba(54,59,70,.9)
+
+  #logo
+    background-repeat no-repeat
+    background-position center
+    background-image url(app/css/images/ett-logo.png)
+    width 36px
+    height 36px
+    margin-top 0
+    margin-left 8px
+    display block
+  
+  #logo.back
+    background-image url(app/css/images/back-icon.png)
+    width 32px
+
+  #footernav
+    float right
+    position relative
+    
+    .footernav-menu
+      position absolute
+      right 32px
+      top 0
+      width 860px
+      list-style none
+      
+      li
+        margin-left 10px
+        float right
+
+        a
+          display block
+          background-repeat no-repeat
+          background-position center top
+          height 54px
+          width 100px
+  
+          span 
+            text-align center
+            display block
+            padding-top 28px
+          
+      li#search, li#login
+        visibility hidden
+  
+      li#sample
+        
+        a#sample-icon
+          background-image url(app/css/images/sample-icon.png)
+  
+      li#add-project
+        
+        a#add-project-icon
+          background-image url(app/css/images/add-project-icon.png)
+  
+      li#search
+
+        #search-form
+
+        a#search-icon
+          background-image url(app/css/images/search-icon.png)
+          background-position center 8px
+
+          span
+            padding-top 18px
+
+      li#login
+
+        a#login-icon
+          background-image url(app/css/images/login-icon.png)
+
+    #inspect-code
+      position absolute
+      right 0
+      top 0
+    
+    #main-menu
+      display block
+      
+    #copydeck-menu
+      display none
+  
+.hide-text
+  text-indent 110%
+  white-space nowrap
+  overflow hidden
+
+.rendered
+  display none
+
+.rendered.tplshow
+  display block
+
+/*= Specific
+------------------------------------------------- */
+
+#article
+
+  #main-section
+    padding-top 257px
+    position relative
+    
+    #no-new-projects-container
+      position absolute
+      top 351px
+      left 136px
+      height 400px
+      width 924px
+    
+      #no-new-projects-text
+        font-size 30px
+        color #b2b2b2
+  
+        #no-new-projects-arrow
+          background-image url(app/css/images/no-new-projects-underline-arrow.png)
+          background-repeat no-repeat
+          background-position -2px 20px
+          height 392px
+          display inline-block
+
+    #project-folders-scroll
+      width 960px
+      overflow scroll
+      display none
+
+      #project-folders-container
+        margin auto
+        width 960px
+        height 138px
+        white-space nowrap
+
+        .project-folders
+          display inline-block
+          margin 0 0 0 50px
+
+          a
+            display block
+            color #fff
+            width 128px
+            height 18px
+            padding 57px 11px 43px
+            background-position center 0
+            background-repeat no-repeat
+            text-decoration none
+            text-transform uppercase
+            font-weight 700
+            font-size 18px
+            text-align center
+            text-overflow ellipsis
+            white-space nowrap
+            overflow hidden
+            background-image url(app/css/images/project-icon.png)
+            
+    #project-copydecks-container
+      position relative
+      overflow hidden
+      display none
+      
+      .arrow
+        position relative
+        left 4px
+        width 78px
+        height 32px
+        z-index 15
+        display block
+      
+      .arrow.arrow-up
+        background-image url(app/css/images/arrow-up.png)
+        background-repeat no-repeat
+
+      #project-copydecks-display
+        position relative
+        z-index 13
+        margin -4px 5px
+        display inline-block
+        
+        .left, .right
+          position absolute
+          top 0px
+          width 5px
+          height 199px
+          display inline-block
+        
+        .left
+          background-image url(app/css/images/copydecks-bkg-left.png)
+          background-repeat no-repeat
+          left -5px
+          
+        .middle
+          background-image url(app/css/images/copydecks-bkg-middle.png)
+          background-repeat repeat-x
+          height 147px
+          padding 46px 44px 12px 44px
+          overflow hidden
+          display inline-block
+          
+          #project-copydecks-content-scroll
+            display block
+          
+            #project-copydecks-content
+              width 715px
+              height 116px
+              white-space nowrap
+              overflow scroll
+              display inline-block
+              padding-bottom 15px
+              float left
+              position relative
+              
+              #project-copydecks-group-items
+                width 20000em
+                position absolute
+                clear both
+              
+                .project-copydecks-group
+                  float left
+                  width 715px
+                
+            #project-copydecks-navigation
+              width 715px
+              text-align center
+              height 17px
+              position absolute
+              bottom 0
+              
+              a
+                display inline-block
+                width 10px
+                height 10px
+                background-color teal
+                margin 0 6px
+              
+              a.active
+                background-color #ccc
+            
+            #add-copydeck
+              float left
+            
+            .project-copydecks
+              display inline-block
+              margin-left 30px
+          
+              a
+                padding-top 96px
+                background-image url(app/css/images/copydeck-icon.png)
+                background-repeat no-repeat
+                background-position center 0
+                display block
+                overflow hidden
+                text-overflow ellipsis
+                text-align center
+                width 90px
+            
+              a#add-copydeck-icon
+                background-image url(app/css/images/add-copydeck-icon.png)
+                background-position center 9px
+                padding-bottom 7px
+          
+        .right
+          background-image url(app/css/images/copydecks-bkg-right.png)
+          background-repeat no-repeat
+          right -5px
+  
+  #copydeck-section
+    
+    #copydeck-wrap
+      background-color #fff
+      min-height 250px
+      margin-top 70px
+      -webkit-box-shadow 0px 0px 20px 0px rgba(0, 0, 0, .1)
+      padding 23px 0 170px 0
+      bottom 0
+      
+      #copydeck-copydeck-info
+        margin 0 0 27px 0
+        padding 13px 0 9px 0
+        height 21px
+        
+        #copydeck-copydeck-label
+          font-size 12px
+          color #ccc
+          margin 0 0 0 230px
+          width 80px
+          float left
+          text-transform uppercase
+          line-height 11px
+          text-align right
+        
+        #copydeck-copydeck-name
+          margin 0 0 0 5px
+          width 595px
+          font-size 25px
+          height 41px
+          color #999
+          -webkit-user-select text
+          outline none
+      
+      #copydeck-entries
+        font-size 22px
+        line-height 26px
+        font-family "Helvetica Neue", Helvetica, san-serif
+        
+        .copydeck-entries-wrap
+          margin 0 50px 60px 120px
+          position relative
+          
+          .copydeck-entries
+            padding 7px 40px 2px 40px
+            -webkit-user-select text
+            outline none
+            position relative
+            width 710px
+            height 28px
+            
+          #copydeck-entry
+            min-height 28px
+          
+          .copydeck-entry-category
+            background-color rgba(241,241,241,.5)
+            color rgba(153,153,153,.5)
+            text-transform uppercase
+            position absolute
+            top 0
+            right 804px
+            padding 16px 16px 15px 16px
+            font-size 17px
+            line-height 12px
+            font-weight bold
+            white-space nowrap
+            
+          #entry-categories-container
+            #entry-categories
+              position relative
+              background-color rgba(246,246,246,.8)
+              listing-style none
+              
+              li
+                min-width 100px
+                
+                a
+                  color #999
+                  display block
+                  padding 10px 2px 7px 2px
+                  border-bottom 1px solid #e1e1e1
+                  font-size 17px
+                  line-height 18px
+                  text-align center
+              
+              li.current
+                a
+                  font-size 26px
+                  line-height 26px
+                  color rgba(153,153,153,.5)
+              
+              li.last
+                a
+                  border-bottom none
+                  
+            #entry-categories:before
+              position absolute
+              top 0
+              left 0
+              content "<<<<<<<<<<<<"
+          
+        .copydeck-entries-wrap:before, .copydeck-entries-wrap:after
+          background-image url(app/css/images/copy-border.png);
+          height 1px
+          width 100%
+          content ""
+          display block

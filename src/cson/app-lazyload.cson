@@ -1,0 +1,28 @@
+{
+  css: [
+    "app/css/fonts.css"
+    , "app/css/reset.css"
+    , "app/css/style.css"
+    , "app/css/jquery.contextMenu.css"
+  ]
+  , js: [
+    "app/js/jquery-2.0.0.min.js"
+    , "app/js/json2.js"
+    , "app/js/jwerty.js"
+    , "app/js/jquery.tools.scrollable-1.2.7.min.js"
+    , "app/js/jquery-ui-1.10.3.custom.min.js"
+    , "app/js/jquery.contextMenu-1.6.5.js"
+    , "app/js/wysihtml5-ett.js"
+    , "app/js/wysihtml5-0.3.0.js"
+    , "app/js/app-init.jsenc"
+    , "app/js/app-storage.jsenc"
+    , "app/js/app-models.jsenc"
+    , "app/js/app-modelsinit.jsenc"
+    , "app/js/app-migrate.jsenc"
+    , "app/js/app-menu.jsenc"
+    , "app/js/app-events.jsenc"
+    , "app/js/app-copydeck.jsenc"
+    , "app/js/app-ui.jsenc"
+    , "app/js/app-settings.jsenc"
+  ]
+}
